@@ -39,7 +39,7 @@ contract Vault is Ownable {
     function adminWithdraw()external{
         require(msg.sender == Factory.getWithdrawAdminAddr(), "Invalid caller address");
 
-        USDC.transfer(Factory.getFeeRecipient(), USDC.balanceOf(address(this)));
+        USDC.transfer(Factory.getFundCollector(), USDC.balanceOf(address(this)));
     }
 
 }

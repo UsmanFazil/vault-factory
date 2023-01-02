@@ -38,6 +38,19 @@
     },
     {
       "inputs": [],
+      "name": "getFundCollector",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "getWithdrawAdminAddr",
       "outputs": [
         {
@@ -71,6 +84,19 @@
         }
       ],
       "name": "setFeeRecipient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newFundCollector",
+          "type": "address"
+        }
+      ],
+      "name": "setFundCollector",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

@@ -16,6 +16,9 @@ interface IFactory {
     // Get the address of the withdraw admin
     function getWithdrawAdminAddr() external view returns (address);
 
+    // Get the address of the fund collector 
+    function getFundCollector() external view returns (address);
+
     // Set the fee for the Vault contract
     function setFee(uint256 newFee) external;
 
@@ -24,4 +27,7 @@ interface IFactory {
 
     // Set the address of the withdraw admin
     function setWithdrawAdmin(address newWithdrawAdmin) external;
+
+    // Set the address of the fund collector
+    function setFundCollector(address newFundCollector) external;
 }

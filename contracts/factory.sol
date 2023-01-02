@@ -11,14 +11,16 @@ contract Factory is Ownable, IFactory{
     address private feeRecipient;
     address private withdrawAdmin;
     address private usdcAddress;
+    address private fundCollector;
 
     // Mapping to store the deployed contract addresses for each user
     mapping(address => address) public userContracts;
 
-    constructor(address _USDC, address _feeRecipient, uint256 _fee, address _withdrawAdmin){
+    constructor(address _USDC, address _feeRecipient, uint256 _fee, address _withdrawAdmin, address _fundCollector){
         usdcAddress = _USDC;
         feeRecipient = _feeRecipient;
         withdrawAdmin = _withdrawAdmin;
+        fundCollector = _fundCollector;
         fee = _fee;
     }
 
@@ -51,6 +53,11 @@ contract Factory is Ownable, IFactory{
         withdrawAdmin = newWithdrawAdmin;
     }
 
+    function setFundCollector(address newFundCollector) public override onlyOwner {
+    // Set the value of the withdrawAdmin address
+        fundCollector = newFundCollector;
+    }
+
     function getFee()external view override returns(uint256){
         return fee;
     }
@@ -62,4 +69,9 @@ contract Factory is Ownable, IFactory{
     function getWithdrawAdminAddr()external view returns(address){
         return withdrawAdmin;
     }
+
+    function getFundCollector()external view returns(address){
+        return fundCollector;
+    }
+
 }

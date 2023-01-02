@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/usmanfazil/Work/factory-vault/contracts/Factory.sol": {
-      "lastModificationDate": 1672663629506,
-      "contentHash": "947e0feb2eb75a873ff05aa690f3acf1",
+      "lastModificationDate": 1672663853038,
+      "contentHash": "d5d4070ae9eb67232399c5361b6e61e4",
       "sourceName": "contracts/Factory.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -80,8 +80,8 @@
       ]
     },
     "/Users/usmanfazil/Work/factory-vault/contracts/IFactory.sol": {
-      "lastModificationDate": 1672663301572,
-      "contentHash": "eb566194ee997ec9314e2f6de7d341c8",
+      "lastModificationDate": 1672663924626,
+      "contentHash": "07fdf798978396d789dcd0aa307685a7",
       "sourceName": "contracts/IFactory.sol",
       "solcConfig": {
         "version": "0.8.9",
