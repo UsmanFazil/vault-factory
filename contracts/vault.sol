@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.9;
+pragma solidity 0.8.17;
 
 import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
@@ -41,5 +41,8 @@ contract Vault is Ownable {
 
         USDC.transfer(Factory.getFundCollector(), USDC.balanceOf(address(this)));
     }
-
+    
+    function vaultBalance()external view returns(uint256){
+        return USDC.balanceOf(address(this));
+    }
 }
