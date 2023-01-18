@@ -22,7 +22,7 @@ func runCronJobs() {
 	s := gocron.NewScheduler(time.UTC)
 
 	// 4
-	s.Every(10).Seconds().Do(func() {
+	s.Every(86400).Seconds().Do(func() {
 		cronService("John Doe")
 	})
 
@@ -32,18 +32,19 @@ func runCronJobs() {
 
 // 6
 func main() {
+	fmt.Println("Cron job started")
 	runCronJobs()
 }
 
 // 2
 func cronService(name string) {
 
-	client, err := ethclient.Dial("wss://ws-nd-568-954-771.p2pify.com/ef4321b0bbdd2551a3ce0f812974ddc4")
+	client, err := ethclient.Dial("wss://ws-nd-483-241-859.p2pify.com/822da77da18beb2ebd0a34f37e8c007e")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	address := common.HexToAddress("0x58615d9f5fA94d5183e6D125Ec766078E869784A")
+	address := common.HexToAddress("0xBF59261EB9Cca4D7087B2BA54769CdDdD01F6C74")
 	instance, err := contracts.NewFactory(address, client)
 	if err != nil {
 		log.Fatal(err)
