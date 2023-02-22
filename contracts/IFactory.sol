@@ -5,7 +5,7 @@ pragma solidity 0.8.17;
 interface IFactory {
 
     // Create a new Vault contract
-    function createVault(address, address) external;
+    function createVault(address) external;
 
     // Get the fee for the Vault contract
     function getFee() external view returns (uint256);

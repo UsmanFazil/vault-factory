@@ -11,6 +11,7 @@ contract Factory is Ownable, IFactory{
     address private feeRecipient;
     address private usdcAddress;
     uint256 public totalVaults;
+    address private adminWallet;
 
     // Mapping to store the deployed contract addresses for each user
     mapping(address => address) public userContract;
@@ -24,12 +25,12 @@ contract Factory is Ownable, IFactory{
     }
 
     // Create a new Vault contract
-    function createVault(address _fundCollector, address _withdrawAdmin) public override{
+    function createVault(address _fundCollector) external override{
         // Check if the caller has already deployed a contract
         require(userContract[msg.sender] == address(0), "You have already deployed a contract");
 
         // Deploy a new instance of the Vault contract
-        Vault vault = new Vault(usdcAddress, address(this), _fundCollector, _withdrawAdmin);
+        Vault vault = new Vault(usdcAddress, adminWallet, _fundCollector);
 
         // Transfer vault ownership to msg.sender 
         vault.transferOwnership(msg.sender);
@@ -57,5 +58,14 @@ contract Factory is Ownable, IFactory{
         return feeRecipient;
     }
 
+    function setAdminWallet(address newAdminWallet)  external onlyOwner {
+        // set the value of admin wallet address for withdrawal
+        adminWallet = newAdminWallet;
+    }
 
+    function getAdminWallet()  external view returns(address) {
+        // set the value of admin wallet address for withdrawal
+        return adminWallet;
+    }
+    
 }

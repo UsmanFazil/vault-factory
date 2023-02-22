@@ -12,12 +12,12 @@ contract Vault is Ownable {
     address private fundCollector;
     address private withdrawAdmin;
 
-    constructor(address _USDC, address _factory, address _fundCollector, address _withdrawAdmin){
+    constructor(address _USDC, address _factory, address _fundCollector){
 
         USDC = IERC20(_USDC);
         Factory = IFactory(_factory);
         fundCollector = _fundCollector;
-        withdrawAdmin = _withdrawAdmin;
+        withdrawAdmin = _factory;
 
     }
 
