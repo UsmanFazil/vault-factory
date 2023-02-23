@@ -65,8 +65,4 @@ contract Vault is Ownable {
         return withdrawAdmin;
     }
 
-    function setWithdrawAdmin(address newWithdrawAdmin) external onlyOwner {
-    // Set the value of the withdrawAdmin address
-        withdrawAdmin = newWithdrawAdmin;
-    }
 }
