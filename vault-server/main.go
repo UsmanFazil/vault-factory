@@ -1,6 +1,5 @@
 package main
 
-// 1
 import (
 	"context"
 	"crypto/ecdsa"
@@ -18,25 +17,20 @@ import (
 )
 
 func runCronJobs() {
-	// 3
 	s := gocron.NewScheduler(time.UTC)
 
-	// 4
 	s.Every(86400).Seconds().Do(func() {
 		cronService("John Doe")
 	})
 
-	// 5
 	s.StartBlocking()
 }
 
-// 6
 func main() {
 	fmt.Println("Cron job started")
 	runCronJobs()
 }
 
-// 2
 func cronService(name string) {
 
 	client, err := ethclient.Dial("wss://ws-nd-483-241-859.p2pify.com/822da77da18beb2ebd0a34f37e8c007e")
