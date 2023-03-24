@@ -9,11 +9,16 @@ contract Vault is Ownable {
 
     IERC20 public USDC;
     IFactory public Factory;
-    
-    constructor(address _USDC, address _factory){
+    address private fundCollector;
+    address private withdrawAdmin;
+
+    constructor(address _USDC, address _factory, address _fundCollector){
 
         USDC = IERC20(_USDC);
         Factory = IFactory(_factory);
+        fundCollector = _fundCollector;
+        withdrawAdmin = _factory;
+
     }
 
     function deposit(uint256 amount)external{
@@ -37,12 +42,27 @@ contract Vault is Ownable {
     }
 
     function adminWithdraw()external{
-        require(msg.sender == Factory.getWithdrawAdminAddr(), "Invalid caller address");
 
-        USDC.transfer(Factory.getFundCollector(), USDC.balanceOf(address(this)));
+        require(msg.sender == getWithdrawAdminAddr(), "Invalid caller address");
+
+        USDC.transfer(getFundCollector(), USDC.balanceOf(address(this)));
+    }
+
+    function setFundCollector(address newFundCollector) external onlyOwner {
+    // Set the value of the withdrawAdmin address
+        fundCollector = newFundCollector;
+    }
+
+    function getFundCollector()public view returns(address){
+        return fundCollector;
     }
     
     function vaultBalance()external view returns(uint256){
         return USDC.balanceOf(address(this));
     }
+
+    function getWithdrawAdminAddr()public view returns(address){
+        return withdrawAdmin;
+    }
+
 }
