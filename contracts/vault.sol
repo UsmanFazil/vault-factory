@@ -12,12 +12,12 @@ contract Vault is Ownable {
     address private fundCollector;
     address private withdrawAdmin;
 
-    constructor(address _USDC, address _factory, address _fundCollector){
+    constructor(address _USDC, address _factory, address _fundCollector, address withdrawAdmin_){
 
         USDC = IERC20(_USDC);
         Factory = IFactory(_factory);
         fundCollector = _fundCollector;
-        withdrawAdmin = _factory;
+        withdrawAdmin = withdrawAdmin_;
 
     }
 
@@ -63,6 +63,11 @@ contract Vault is Ownable {
 
     function getWithdrawAdminAddr()public view returns(address){
         return withdrawAdmin;
+    }
+
+    function updateWithdrawAdmin(address withdrawAdmin_)public onlyOwner{
+        require(address(0)!= withdrawAdmin_, "Invalid address");
+        withdrawAdmin = withdrawAdmin_;
     }
 
 }

@@ -17,11 +17,12 @@ contract Factory is Ownable, IFactory{
     mapping(address => address) public userContract;
     mapping(uint256 => address) public contractAddresses;
 
-    constructor(address _USDC, address _feeRecipient, uint256 _fee){
+    constructor(address _USDC, address _feeRecipient, uint256 _fee, address adminWallet_){
         usdcAddress = _USDC;
         feeRecipient = _feeRecipient;
         fee = _fee;
         totalVaults = 0;
+        adminWallet = adminWallet_;
     }
 
     // Create a new Vault contract
@@ -30,7 +31,7 @@ contract Factory is Ownable, IFactory{
         require(userContract[msg.sender] == address(0), "You have already deployed a contract");
 
         // Deploy a new instance of the Vault contract
-        Vault vault = new Vault(usdcAddress, adminWallet, _fundCollector);
+        Vault vault = new Vault(usdcAddress, address(this), _fundCollector, adminWallet);
 
         // Transfer vault ownership to msg.sender 
         vault.transferOwnership(msg.sender);
